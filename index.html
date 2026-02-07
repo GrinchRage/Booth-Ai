@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booth AI Studio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Booth AI Studio</p>
+          <h1>Selfie realistici da una foto</h1>
+          <p class="lead">
+            Carica una o più persone e genera 4 selfie realistici. I dettagli
+            distintivi (tatuaggi, piercing, nei, segni particolari) restano fedeli
+            alla foto originale salvo richiesta esplicita nel prompt libero.
+          </p>
+        </div>
+        <div class="hero-card">
+          <h2>API gratuita</h2>
+          <p>
+            Usa l’Inference API gratuita di Hugging Face. Inserisci il token (gratuito)
+            oppure continua a leggere le istruzioni sotto.
+          </p>
+          <label class="field">
+            Token API (opzionale)
+            <input id="apiToken" type="password" placeholder="hf_..." />
+          </label>
+        </div>
+      </header>
+
+      <main>
+        <section class="panel">
+          <h2>Impostazioni</h2>
+          <form id="boothForm" class="form-grid">
+            <label class="field">
+              Foto da trasformare
+              <input id="photoInput" type="file" accept="image/*" required />
+            </label>
+
+            <label class="field">
+              Categoria preset
+              <select id="presetSelect">
+                <option value="selfie-naturale">Selfie naturale</option>
+                <option value="selfie-amici">Selfie con amici</option>
+                <option value="selfie-viaggio">Selfie da viaggio</option>
+                <option value="selfie-golden-hour">Golden hour</option>
+                <option value="selfie-specchio">Selfie allo specchio</option>
+                <option value="selfie-party">Selfie festa serale</option>
+              </select>
+            </label>
+
+            <label class="field">
+              Prompt libero
+              <textarea
+                id="freePrompt"
+                placeholder="Aggiungi dettagli facoltativi: ambiente, stile, mood, abbigliamento."
+                rows="4"
+              ></textarea>
+            </label>
+
+            <div class="field">
+              <span>Output</span>
+              <div class="toggle-group">
+                <label class="toggle">
+                  <input id="phoneToggle" type="checkbox" />
+                  <span>Mostra telefono in mano (solo se richiesto)</span>
+                </label>
+                <label class="toggle">
+                  <input id="mirrorToggle" type="checkbox" />
+                  <span>Scenario allo specchio</span>
+                </label>
+              </div>
+            </div>
+
+            <button class="primary" type="submit">Genera 4 selfie</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <h2>Risultati</h2>
+            <p>Le immagini vengono generate una dopo l’altra (4 in totale).</p>
+          </div>
+          <div id="status" class="status">In attesa di un upload...</div>
+          <div id="gallery" class="gallery"></div>
+        </section>
+
+        <section class="panel tips">
+          <h2>Come funziona</h2>
+          <ol>
+            <li>Carica una foto con una o più persone.</li>
+            <li>Seleziona una categoria preset e aggiungi un prompt libero.</li>
+            <li>
+              Il prompt include sempre l’istruzione di mantenere tatuaggi,
+              segni particolari, piercing, nei e difetti.
+            </li>
+            <li>Generiamo 4 immagini una dopo l’altra, ognuna con download.</li>
+          </ol>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
